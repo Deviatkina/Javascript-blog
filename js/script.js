@@ -1,3 +1,7 @@
+document.getElementById('test-button').addEventListener('click', function(){
+    const links = document.querySelectorAll('.titles a');
+    console.log('links:', links);
+  });
 const titleClickHandler = function(){
     console.log('Link was clicked!');
     /* remove class 'active' from all article links  */
