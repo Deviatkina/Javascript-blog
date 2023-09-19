@@ -1,120 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
+const titleClickHandler = function(){
+    console.log('Link was clicked!');
+    /* remove class 'active' from all article links  */
 
-/* Variables */
+  /* add class 'active' to the clicked link */
 
-$color-light: #fff;
-$color-dark: #444;
+  /* remove class 'active' from all articles */
 
-$font-logo: 'Sacramento', cursive;
-$font-header: 'Oswald', sans-serif;
-$font-text: 'Source Sans Pro', sans-serif;
+  /* get 'href' attribute from the clicked link */
 
-/* Global */
+  /* find the correct article using the selector (value of 'href' attribute) */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-body {
-  background: $color-light;
-  font-family: $font-text;
-  color: $color-dark;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-.section-title {
-  font-size: 22px;
-  text-transform: uppercase;
-  font-family: $font-header;
-  font-weight: 600;
-  span {
-    text-transform: none;
-    font-weight: 400;
-    color: lighten($color-dark, 20%);
+  /* add class 'active' to the correct article */
   }
-}
-
-/* Layout */
-
-.wrapper {
-  display: flex;
-  margin-left: 10px;
-}
-
-.sidebar {
-  flex: 1 0 0;
-}
-
-.posts {
-  flex: 2 0 0;
-}
-
-.sidebar, .posts {
-  background: $color-light;
-  margin-right: 10px;
-  padding: 40px;
-  border: 1px solid $color-dark;
-  border-radius: 5px;
-}
-
-/* Logo */
-
-.logo {
-  font-family: $font-logo;
-  font-weight: 400;
-  font-size: 104px;
-  line-height: 1;
-  text-align: center;
-}
-
-/* Lists */
-
-.list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  .active {
-    font-weight: bold;
+  
+  const links = document.querySelectorAll('.titles a');
+  
+  for(let link of links){
+    link.addEventListener('click', titleClickHandler);
   }
-}
-
-.list-horizontal {
-  li {
-    display: inline-block;
-  }
-}
-
-/* Authors */
-
-.authors {
-  li {
-    margin-bottom: 12px;
-  }
-}
-
-/* Post */
-
-.post {
-  display: none;
-  &.active {
-    display: block;
-  }
-}
-
-.post-author {
-  font-style: italic;
-}
-
-.post-tags {
-  display: flex;
-  p {
-    margin: 0 10px 0 0;
-  }
-}
