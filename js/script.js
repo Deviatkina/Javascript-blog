@@ -173,7 +173,7 @@ function generateAuthors() {
         const authorsList = article.querySelector(optArticleAuthorSelector);
         console.log(authorsList);
         /*get authors from data-author attribute */
-        const articleAuthor = article.getAttribute('data-author');
+        const articleAuthor = authorsList.getAttribute('data-author');
         console.log (articleAuthor);
         /*generate HTML of the link */
         let authorHTML = '<a href="#'+articleAuthor+'"><span>'+articleAuthor+'</span></a>';
