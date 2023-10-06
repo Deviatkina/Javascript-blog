@@ -183,4 +183,31 @@ function generateAuthors() {
     }
 }
 generateAuthors();
+/*7 Wyświetlenie autora po kliknięciu authorClickHandler*/
+function authorClickHandler(event){
+    /* prevent default action for this event */
+    /* make new constant named "clickedElement" and give it the value of "this" */
+    /*??? make a new constant "href" and read the attribute "href"(may be from "data-author"?) of the clicked element */
+    /* make a new constant "author" and extract name of the author from the "href" constant */
+    
+    /* find all author links with class active */
+        /* START LOOP: for each found authir link */
+        /* remove class active */
+        /*END LOOP*/
+    /* find all tag links with "href" attribute equal to the "href" constant */
+    /* START LOOP: for each found authir link */
+        /* add class active */
+    /* END LOOP: for each found author link */
+    /* execute function "generateTitleLinks" with author selector as argument */
+}
+
+/*8 Dodajemy linki do autorów - addClickListenerToAuthors*/
+function addClickListenersToTags(){
+    /* find all links to authors */
+    /* START LOOP: for each link */
+        /* add tagClickHandler as event listener for that link */
+    /* END LOOP: for each link */
+    
+}  
+
 
