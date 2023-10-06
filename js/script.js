@@ -165,7 +165,6 @@ function generateAuthors() {
     /*find all articles*/
     const articles = document.querySelectorAll(optArticleSelector);
     console.log(articles);
-
     /*START LOOP: for each article*/
     for (let article of articles) {
         console.log(article);
@@ -195,7 +194,7 @@ function authorClickHandler(event) {
     /* make a new constant "author" and extract name of the author from the "href" constant */
     const author = href.replace('#author-', '');
     /* find all author links with class active */
-    const activeAuthors = document.querySelectorAll('a.active');
+    const activeAuthors = document.querySelectorAll('a.active[href^="author-"]');
     /* START LOOP: for each found author link */
     for (let activeAuthor of activeAuthors) {
         /* remove class active */
@@ -203,7 +202,7 @@ function authorClickHandler(event) {
         /*END LOOP*/
     }
     /* find all tag links with "href" attribute equal to the "href" constant */
-    const authorLinks = document.querySelectorAll('a[href=" ' + href + ' "]');
+    const authorLinks = document.querySelectorAll('a[href^=" ' + href + ' "]');
     /* START LOOP: for each found author link */
     for (let authorLink of authorLinks) {
         /* add class active */
@@ -218,7 +217,7 @@ function authorClickHandler(event) {
 /*8 Dodanie linków do autorów*/
 function addClickListenersToAuthors() {
     /* find all links to authors */
-    const authorLinks = document.querySelectorAll('a[href^="#author-"]');
+    const authorLinks = document.querySelectorAll('a[href="#author-"]');
     /* START LOOP: for each link */
     for (let authorLink of authorLinks) {
         /* add authorClickHandler as event listener for that link */
