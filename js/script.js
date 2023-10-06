@@ -162,7 +162,25 @@ addClickListenersToTags();
 
 /*6 Zadanie: Dodanie autora */
 function generateAuthors() {
-
+    /*find all articles*/
+    const articles = document.querySelectorAll(optArticleSelector);
+    console.log(articles);
+    
+    /*START LOOP: for each article*/
+    for(let article of articles){
+        console.log(article);
+        /*find author wrapper*/
+        const authorsList = article.querySelector(optArticleAuthorSelector);
+        console.log(authorsList);
+        /*get authors from data-author attribute */
+        const articleAuthor = article.getAttribute('data-author');
+        console.log (articleAuthor);
+        /*generate HTML of the link */
+        let authorHTML = '<a href="#'+articleAuthor+'"><span>'+articleAuthor+'</span></a>';
+        console.log(authorHTML);
+        /*insert HTML of all the links into the data-author wrapper */
+        authorsList.innerHTML = authorHTML;
+    }
 }
 generateAuthors();
 
