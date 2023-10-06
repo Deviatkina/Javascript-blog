@@ -210,14 +210,14 @@ function authorClickHandler(event) {
         /* END LOOP: for each found author link */
     }
     /* execute function "generateTitleLinks" with author selector as argument */
-    generateTitleLinks('[data-authors="' + author + '"]');
+    generateTitleLinks('[data-author="' + author + '"]');
 }
 
 
 /*8 Dodanie linków do autorów*/
 function addClickListenersToAuthors() {
     /* find all links to authors */
-    const authorLinks = document.querySelectorAll('a[href="#author-"]');
+    const authorLinks = document.querySelectorAll('a[href^="#author-"]');
     /* START LOOP: for each link */
     for (let authorLink of authorLinks) {
         /* add authorClickHandler as event listener for that link */
