@@ -104,7 +104,7 @@ function generateTags() {
         /* START LOOP: for each tag */
         for (let tag of articleTagsArray) {
             /* generate HTML of the link */
-            let tagHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+            let tagHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';
             console.log(tagHTML);
             /* add generated code to html variable */
             html += tagHTML;
@@ -136,7 +136,7 @@ function tagClickHandler(event) {
         /* END LOOP: for each active tag link */
     }
     /* find all tag links with "href" attribute equal to the "href" constant */
-    const tagLinks = document.querySelectorAll('a[href=" ' + href + ' "]'); /*lub 'a[href^="#tag-"]' */
+    const tagLinks = document.querySelectorAll('a[href="' + href + '"]'); /*lub 'a[href^="#tag-"]' */
     /* START LOOP: for each found tag link */
     for (let tagLink of tagLinks) {
         /* add class active */
@@ -171,15 +171,24 @@ function generateAuthors() {
         /*find author wrapper*/
         const authorsList = article.querySelector(optArticleAuthorSelector);
         console.log(authorsList);
+        /* make html variable with empty string */
+        let html = '';
         /*get authors from data-author attribute */
         const articleAuthor = authorsList.getAttribute('data-author');
         console.log(articleAuthor);
+        /* START LOOP: for each author */
+        for (let author of articleAuthor) {
         /*generate HTML of the link */
-        let authorHTML = '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
-        console.log(authorHTML);
+            let authorHTML = '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
+            console.log(authorHTML);
+            /* add generated code to html variable */
+            html = authorHTML;
+            /* END LOOP: for each tag */
+        }
         /*insert HTML of all the links into the data-author wrapper */
-        authorsList.innerHTML = authorHTML;
+        authorsList.innerHTML = html;
     }
+    /* END LOOP: for every article: */
 }
 generateAuthors();
 
@@ -202,7 +211,7 @@ function authorClickHandler(event) {
         /*END LOOP*/
     }
     /* find all tag links with "href" attribute equal to the "href" constant */
-    const authorLinks = document.querySelectorAll('a[href^=" ' + href + ' "]');
+    const authorLinks = document.querySelectorAll('a[href^="' + href + '"]');
     /* START LOOP: for each found author link */
     for (let authorLink of authorLinks) {
         /* add class active */
@@ -226,4 +235,3 @@ function addClickListenersToAuthors() {
     }
 }
 addClickListenersToAuthors();
-
