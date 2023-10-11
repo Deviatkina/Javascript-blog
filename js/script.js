@@ -83,8 +83,10 @@ for (let link of links) {
     link.addEventListener('click', titleClickHandler);
 }
 
-/*3. Dodajemy tagi do artykułu*/
+/*3. Dodajemy tagi do artykułu + 9. Generowanie tagów do chmury [NEW]*/
 function generateTags() {
+    /* [NEW for right column] create a new variable allTags with an empty array */
+    let allTags = [];
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
     console.log(articles);
@@ -100,21 +102,31 @@ function generateTags() {
         const articleTags = article.getAttribute('data-tags');
         console.log(articleTags);
         /* split tags into array */
-        const articleTagsArray = articleTags.split(' , ');
+        const articleTagsArray = articleTags.split(' ');
         console.log(articleTagsArray);
         /* START LOOP: for each tag */
         for (let tag of articleTagsArray) {
             /* generate HTML of the link */
-            let tagHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';
-            console.log(tagHTML);
+            let linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';
+            console.log(linkHTML);
             /* add generated code to html variable */
-            html += tagHTML;
+            html += linkHTML;
+            /* [NEW] check if this link is NOT already in allTags */
+            if(allTags.indexOf(linkHTML) == -1){
+                /* [NEW] add generated code to allTags array */
+                allTags.push(linkHTML);
+            }
             /* END LOOP: for each tag */
         }
         /* insert HTML of all the links into the tags wrapper */
         tagsList.innerHTML = html;
-    }
     /* END LOOP: for every article: */
+    }
+    /* [NEW] find list of tags in right column */
+    const tagList = document.querySelector(optTagsListSelector);
+
+    /* [NEW] add html from allTags to tagList */
+    tagList.innerHTML = allTags.join(' ');
 }
 generateTags();
 
@@ -161,7 +173,7 @@ function addClickListenersToTags() {
 }
 addClickListenersToTags();
 
-/*6 Zadanie: Dodanie autora */
+/*6. Zadanie: Dodanie autora */
 function generateAuthors() {
     /*find all articles*/
     const articles = document.querySelectorAll(optArticleSelector);
@@ -189,7 +201,7 @@ function generateAuthors() {
 }
 generateAuthors();
 
-/*7 Wyświetlenie autora po kliknięciu w link*/
+/*7. Wyświetlenie autora po kliknięciu w link*/
 
 function authorClickHandler(event) {
     /* prevent default action for this event */
@@ -222,7 +234,7 @@ function authorClickHandler(event) {
 }
 
 
-/*8 Dodanie linków do autorów*/
+/*8. Dodanie linków do autorów*/
 function addClickListenersToAuthors() {
     /* find all links to authors */
     const authorLinks = document.querySelectorAll('a[href^="#author-"]');
