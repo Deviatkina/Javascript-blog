@@ -174,7 +174,7 @@ function generateAuthors() {
         /* make html variable with empty string */
         let html = '';
         /*get authors from data-author attribute */
-        const articleAuthor = authorsList.getAttribute('data-author');
+        const articleAuthor = article.getAttribute('data-author');
         console.log(articleAuthor);
         /* generate HTML of the link */
         let authorHTML = '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
@@ -201,11 +201,11 @@ function authorClickHandler(event) {
     const author = href.replace('#author-', '');
     /* find all authors links with class active */
     const activeAuthors = document.querySelectorAll('.active[href^="#author-"]');
-    /* START LOOP: for each active author link */
+    /* START LOOP: for each active tag link */
     for (let activeAuthor of activeAuthors) {
         /* remove class active */
         activeAuthor.classList.remove('active');
-        /* END LOOP: for each active author link */
+        /* END LOOP: for each active tag link */
     }
     /* find all authors links with "href" attribute equal to the "href" constant */
     const authorLinks = document.querySelectorAll('a[href="' + href + '"]');
