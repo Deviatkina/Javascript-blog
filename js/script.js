@@ -136,6 +136,8 @@ function generateTags() {
     const tagList = document.querySelector(optTagsListSelector);
 
     /* [NEW] create variable for all links HTML code */
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams:', tagsParams)
     let allTagsHTML = '';
    
 
@@ -145,14 +147,28 @@ function generateTags() {
         allTagsHTML += '<a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a> ';
         /*(previous code can be changed by using templates:
         allTagsHTML += `<a href="#${tag}">${tag} (${allTags[tag]})</a> `; )*/
+        
+        /* [NEW] END LOOP: for each tag in allTags: */
     }
-    /* [NEW] END LOOP: for each tag in allTags: */
-
     /*[NEW] add HTML from allTagsHTML to tagList */
     tagList.innerHTML = allTagsHTML;
     console.log(allTags);
 }
 generateTags();
+/*Znalezienie skrajnych liczb wystąpień*/
+function calculateTagsParams(tags){
+    const params = {min:999999, max:0};
+    for(let tag in tags){
+        console.log(tag + ' is used ' + tags[tag] + ' times');
+        if(tags[tag] > params.max){
+            params.max = tags[tag];
+        }
+        if(tags[tag] > params.min){
+            params.min = tags[tag];
+        }
+    }
+    return params;
+}
 
 /*4. Dodajemy akcje po kliknięciu w tag*/
 function tagClickHandler(event) {
