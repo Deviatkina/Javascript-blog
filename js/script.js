@@ -137,7 +137,7 @@ function generateTags() {
 
     /* [NEW] create variable for all links HTML code */
     const tagsParams = calculateTagsParams(allTags);
-    console.log('tagsParams:', tagsParams)
+    console.log('tagsParams:', tagsParams);
     let allTagsHTML = '';
    
 
@@ -157,7 +157,7 @@ function generateTags() {
 generateTags();
 /*Znalezienie skrajnych liczb wystąpień*/
 function calculateTagsParams(tags){
-    const params = {min:999999, max:0};
+    const params = {min:1, max:0};
     for(let tag in tags){
         console.log(tag + ' is used ' + tags[tag] + ' times');
         if(tags[tag] > params.max){
