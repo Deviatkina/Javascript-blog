@@ -142,7 +142,9 @@ function generateTags() {
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
         /* [NEW] generate code of a link and add it to allTagsHTML */
-        allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+        allTagsHTML += '<a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a> ';
+        /*(previous code can be changed by using templates:
+        allTagsHTML += `<a href="#${tag}">${tag} (${allTags[tag]})</a> `; )*/
     }
     /* [NEW] END LOOP: for each tag in allTags: */
 
