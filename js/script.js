@@ -157,13 +157,13 @@ function generateTags() {
 generateTags();
 /*Znalezienie skrajnych liczb wystąpień*/
 function calculateTagsParams(tags){
-    const params = {min:1, max:0};
+    const params = {min:99999, max:0};
     for(let tag in tags){
         console.log(tag + ' is used ' + tags[tag] + ' times');
         if(tags[tag] > params.max){
             params.max = tags[tag];
         }
-        if(tags[tag] > params.min){
+        if(tags[tag] < params.min){
             params.min = tags[tag];
         }
     }
