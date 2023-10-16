@@ -7,8 +7,9 @@ const optArticleSelector = '.post',
     optArticleTagsSelector = '.post-tags .list',
     optArticleAuthorSelector = '.post-author',
     optTagsListSelector = '.tags.list',
-    optCloudClassCount = '5',
-    optCloudClassPrefix = 'tag-size-';
+    optCloudClassCount = 5,
+    optCloudClassPrefix = 'tag-size-',
+    optAuthorListSelector = '.author.list';
 
 function generateTitleLinks(customSelector = '') {
 
@@ -238,8 +239,10 @@ function addClickListenersToTags() {
 }
 addClickListenersToTags();
 
-/*6. Zadanie: Dodanie autora */
+/*6. Zadanie: Dodanie autora + 12. Generowanie listy autorów do chmury*/
 function generateAuthors() {
+    /* [NEW] create a new variable allAuthors with an empty object. */
+    let allAuthors = {};
     /*find all articles*/
     const articles = document.querySelectorAll(optArticleSelector);
     console.log(articles);
@@ -259,9 +262,36 @@ function generateAuthors() {
         console.log(authorHTML);
         /* add generated code to html variable */
         html += authorHTML;
+        /* [NEW] check if this link is NOT already in allAuthors */
+        if(!allAuthors[articleAuthor]) {
+            /* [NEW] add author to allAuthors object */
+            allAuthors[articleAuthor] = 1;
+        } else {
+            allAuthors[articleAuthor]++;
+        }
         /*insert HTML of all the links into the data-author wrapper */
         authorsList.innerHTML = html;
     }
+    /* [NEW] find list of authors in right column */
+    const authorList = document.querySelector(optAuthorListSelector);
+    /* [NEW] create variable for all links HTML code */
+    const authorParams = calculateAuthorParams(allAuthors);
+    console.log('AuthorsParams:', AuthorParams);
+    let allAuthorsHTML = '';
+
+    /* [NEW] START LOOP: for each author in allAuthors: */
+    for(let author in allAuthors){
+        /* [NEW do Wybrania klasy dla autora]*/
+        const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '" class="' + calculateAuthorClass(allAuthors[articleAuthor], authosParams) + '">' + articleAuthor + '(' + allAUthors[articleAuthor] + ')' + '</a></li>';
+        console.log('authorLinkHTML:', authorLinkHTML);
+        
+        /* [NEW do Generowanie autorów do chmury ] generate code of a link and add it to allAuthorsHTML */
+        allAuthorsHTML += authorLinkHTML;
+        /* [NEW] END LOOP: for each author in allAuthors: */
+    }
+    /*[NEW] add HTML from allAuthorsHTML to AuthorList */
+    authorList.innerHTML = allAuthorsHTML;
+    console.log(allAuthors);
     /* END LOOP: for every article: */
 }
 generateAuthors();
