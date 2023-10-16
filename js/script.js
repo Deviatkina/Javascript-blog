@@ -6,7 +6,9 @@ const optArticleSelector = '.post',
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
     optArticleAuthorSelector = '.post-author',
-    optTagsListSelector = '.tags.list';
+    optTagsListSelector = '.tags.list',
+    optCloudClassCount = '5',
+    optCloudClassPrefix = 'tag-size-';
 
 function generateTitleLinks(customSelector = '') {
 
@@ -83,6 +85,38 @@ for (let link of links) {
     link.addEventListener('click', titleClickHandler);
 }
 
+/*10. Znalezienie skrajnych liczb wystąpień*/
+function calculateTagsParams(tags){
+    /* Defines a variable "params" with min and max values*/
+    const params = {min:99999, max:0};
+    /* Start loop: for each tags*/
+    for(let tag in tags){
+        /* For each tag print a message "Tag is used (nember) times" */ 
+        console.log(tag + ' is used ' + tags[tag] + ' times');
+        /* Compares the number of uses of the current tag with the current values*/ 
+        if(tags[tag] > params.max){
+            params.max = tags[tag];
+        }
+        if(tags[tag] < params.min){
+            params.min = tags[tag];
+        }
+    }
+    /* This function retorns the maximum and minimum number of tag usages in a given object.*/
+    return params;
+}
+
+/*11. Wybranie klasy dla tagu */
+function calculateTagClass(count,params){
+    /* Find a numerical interval within which tags are distribute tags into classes.*/
+    const countRange = params.max - params.min; /*countRange - jest to przedział liczbowy, w którym znaczniki są rozdzielane na klasy.*/
+    /* Сalculate the class spacing. */
+    const classInterval /* Obliczamy odstępy między klasami.*/ = countRange/(optCloudClassCount-1); /*optCloudClassCount - wskazuje liczbę klas dostępnych dla znaczników stylizacji.*/
+    /* Define the class number for a given tag.*/
+    const classNbr = Math.floor((count-params.min)/classInterval) + 1; /* Od ilości użyć tagu (count - params.min) odejmujemy wartość minimalną, aby „przesunąć” wartość na początek zakresu klasy, a następnie rozdzielić przez przedział klasy (classInterval) i dodać 1, aby otrzymać numer klasy. Funkcja Math.floor służy do zaokrąglania wyniku w dół do liczby całkowitej.*/
+    /* Return the class of the tag, which consists of the class prefix*/
+    return optCloudClassPrefix + classNbr; /* */
+}
+
 /*3. Dodajemy tagi do artykułu + 9. Generowanie tagów do chmury [NEW]*/
 function generateTags() {
     /* [NEW] create a new variable allTags with an empty object  (dla tabeli/array użylibyś my [], a nie {}*/
@@ -140,11 +174,17 @@ function generateTags() {
     console.log('tagsParams:', tagsParams);
     let allTagsHTML = '';
    
-
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
-        /* [NEW] generate code of a link and add it to allTagsHTML */
-        allTagsHTML += '<a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a> ';
+        /* [NEW do Wybranie klasy dla tagu]*/
+        const tagLinkHTML = '<li><a href="#tag-' + tag + '">' + tag + calculateTagClass(allTags[tag], tagsParams) + '</a></li>';
+        console.log('tagLinkHTML:', tagLinkHTML);
+
+        /* [NEW do Generowanie tagów do chmury ] generate code of a link and add it to allTagsHTML */
+        //??allTagsHTML += '<a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a> ';/
+        allTagsHTML += tagLinkHTML;
+        
+
         /*(previous code can be changed by using templates:
         allTagsHTML += `<a href="#${tag}">${tag} (${allTags[tag]})</a> `; )*/
         
@@ -155,20 +195,6 @@ function generateTags() {
     console.log(allTags);
 }
 generateTags();
-/*Znalezienie skrajnych liczb wystąpień*/
-function calculateTagsParams(tags){
-    const params = {min:99999, max:0};
-    for(let tag in tags){
-        console.log(tag + ' is used ' + tags[tag] + ' times');
-        if(tags[tag] > params.max){
-            params.max = tags[tag];
-        }
-        if(tags[tag] < params.min){
-            params.min = tags[tag];
-        }
-    }
-    return params;
-}
 
 /*4. Dodajemy akcje po kliknięciu w tag*/
 function tagClickHandler(event) {
