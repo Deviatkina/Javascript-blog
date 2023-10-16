@@ -114,7 +114,7 @@ function calculateTagClass(count,params){
     /* Define the class number for a given tag.*/
     const classNbr = Math.floor((count-params.min)/classInterval) + 1; /* Od ilości użyć tagu (count - params.min) odejmujemy wartość minimalną, aby „przesunąć” wartość na początek zakresu klasy, a następnie rozdzielić przez przedział klasy (classInterval) i dodać 1, aby otrzymać numer klasy. Funkcja Math.floor służy do zaokrąglania wyniku w dół do liczby całkowitej.*/
     /* Return the class of the tag, which consists of the class prefix*/
-    return optCloudClassPrefix + classNbr; /* */
+    return optCloudClassPrefix + classNbr; 
 }
 
 /*3. Dodajemy tagi do artykułu + 9. Generowanie tagów do chmury [NEW]*/
@@ -177,14 +177,13 @@ function generateTags() {
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
         /* [NEW do Wybranie klasy dla tagu]*/
-        const tagLinkHTML = '<li><a href="#tag-' + tag + '">' + tag + calculateTagClass(allTags[tag], tagsParams) + '</a></li>';
+        const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '(' + allTags[tag] + ')' + '</a></li>';
         console.log('tagLinkHTML:', tagLinkHTML);
 
         /* [NEW do Generowanie tagów do chmury ] generate code of a link and add it to allTagsHTML */
         //??allTagsHTML += '<a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a> ';/
         allTagsHTML += tagLinkHTML;
         
-
         /*(previous code can be changed by using templates:
         allTagsHTML += `<a href="#${tag}">${tag} (${allTags[tag]})</a> `; )*/
         
