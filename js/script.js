@@ -240,7 +240,7 @@ function addClickListenersToTags() {
 addClickListenersToTags();
 
 /*13. Znalezienie skrajnych liczb wystąpień autora*/
-function calculateAuthorParams(authors){
+function calculateAuthorsParams(authors){
     /* Defines a variable "params" with min and max values*/
     const params = {min:99999, max:0};
     /* Start loop: for each author*/
@@ -258,6 +258,8 @@ function calculateAuthorParams(authors){
     /* This function retorns the maximum and minimum number of authors usages in a given object.*/
     return params;
 }
+/*14. Wybranie klasy dla autora*/
+
 
 
 /*6. Zadanie: Dodanie autora + 12. Generowanie listy autorów do chmury*/
@@ -296,14 +298,14 @@ function generateAuthors() {
     /* [NEW] find list of authors in right column */
     const authorList = document.querySelector(optAuthorListSelector);
     /* [NEW] create variable for all links HTML code */
-    const authorParams = calculateAuthorParams(allAuthors);
-    console.log('AuthorsParams:', AuthorsParams);
+    const authorsParams = calculateAuthorsParams(allAuthors);
+    console.log('authorsParams:', authorsParams);
     let allAuthorsHTML = '';
 
     /* [NEW] START LOOP: for each author in allAuthors: */
     for(let author in allAuthors){
         /* [NEW do Wybrania klasy dla autora]*/
-        const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '" class="' + calculateAuthorClass(allAuthors[articleAuthor], authosParams) + '">' + articleAuthor + '(' + allAUthors[articleAuthor] + ')' + '</a></li>';
+        const authorLinkHTML = '<li><a href="#author-' + author + '" class="' + calculateAuthorClass(allAuthors[articleAuthor], authosParams) + '">' + articleAuthor + '(' + allAUthors[articleAuthor] + ')' + '</a></li>';
         console.log('authorLinkHTML:', authorLinkHTML);
         
         /* [NEW do Generowanie autorów do chmury ] generate code of a link and add it to allAuthorsHTML */
