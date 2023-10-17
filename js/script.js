@@ -86,13 +86,13 @@ for (let link of links) {
     link.addEventListener('click', titleClickHandler);
 }
 
-/*10. Znalezienie skrajnych liczb wystąpień*/
+/*10. Znalezienie skrajnych liczb wystąpień tagu*/
 function calculateTagsParams(tags){
     /* Defines a variable "params" with min and max values*/
     const params = {min:99999, max:0};
     /* Start loop: for each tags*/
     for(let tag in tags){
-        /* For each tag print a message "Tag is used (nember) times" */ 
+        /* For each tag print a message "Tag is used (number) times" */ 
         console.log(tag + ' is used ' + tags[tag] + ' times');
         /* Compares the number of uses of the current tag with the current values*/ 
         if(tags[tag] > params.max){
@@ -239,6 +239,27 @@ function addClickListenersToTags() {
 }
 addClickListenersToTags();
 
+/*13. Znalezienie skrajnych liczb wystąpień autora*/
+function calculateAuthorParams(authors){
+    /* Defines a variable "params" with min and max values*/
+    const params = {min:99999, max:0};
+    /* Start loop: for each author*/
+    for(let author in authors){
+        /* For each author print a message "Author is used (number) times" */ 
+        console.log(author + ' is used ' + authors[author] + ' times');
+        /* Compares the number of uses of the current author with the current values*/ 
+        if(authors[author] > params.max){
+            params.max = authors[author];
+        }
+        if(authors[author] < params.min){
+            params.min = authors[author];
+        }
+    }
+    /* This function retorns the maximum and minimum number of authors usages in a given object.*/
+    return params;
+}
+
+
 /*6. Zadanie: Dodanie autora + 12. Generowanie listy autorów do chmury*/
 function generateAuthors() {
     /* [NEW] create a new variable allAuthors with an empty object. */
@@ -276,7 +297,7 @@ function generateAuthors() {
     const authorList = document.querySelector(optAuthorListSelector);
     /* [NEW] create variable for all links HTML code */
     const authorParams = calculateAuthorParams(allAuthors);
-    console.log('AuthorsParams:', AuthorParams);
+    console.log('AuthorsParams:', AuthorsParams);
     let allAuthorsHTML = '';
 
     /* [NEW] START LOOP: for each author in allAuthors: */
