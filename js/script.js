@@ -255,23 +255,20 @@ function generateAuthors() {
         /* make html variable with empty string */
         let html = '';
         /*get authors from data-author attribute */
-        const articleAuthors = article.getAttribute('data-author');
-        console.log(articleAuthors);
-        /*Start Loop: for each author*/ 
-        for (let articleAuthor of articleAuthors){
-            /* generate HTML of the link */
-            let authorHTML = '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
-            console.log(authorHTML);
-            /* add generated code to html variable */
-            html += authorHTML;
-            /* [NEW] check if this link is NOT already in allAuthors */
-                if(!allAuthors[articleAuthor]) {
-                    /* [NEW] add author to allAuthors object */
-                    allAuthors[articleAuthor] = 1;
+        const articleAuthor = article.getAttribute('data-author');
+        console.log(articleAuthor);
+        /* generate HTML of the link */
+        let authorHTML = '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
+        console.log(authorHTML);
+        /* add generated code to html variable */
+        html += authorHTML;
+        /* [NEW] check if this link is NOT already in allAuthors */
+            if(!allAuthors[articleAuthor]) {
+                /* [NEW] add author to allAuthors object */
+                allAuthors[articleAuthor] = 1;
                 } else {
-                    allAuthors[articleAuthor]++;
+                allAuthors[articleAuthor]++;
                 }
-        }
         /*insert HTML of all the links into the data-author wrapper */
         authorsList.innerHTML = html;
     }
@@ -279,11 +276,10 @@ function generateAuthors() {
     const authorList = document.querySelector(optAuthorsListSelector);
     /* [NEW] create variable for all links HTML code */
     let allAuthorsHTML = '';
-
     /* [NEW] START LOOP: for each author in allAuthors: */
-    for(let author of authorList){
+    for(let author in allAuthors){
         /* [NEW do Wybrania klasy dla autora]*/
-        const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '">' + articleAuthor + '</a></li>';
+        const authorLinkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
         console.log('authorLinkHTML:', authorLinkHTML);
         
         /* [NEW do Generowanie autorów do chmury ] generate code of a link and add it to allAuthorsHTML */
