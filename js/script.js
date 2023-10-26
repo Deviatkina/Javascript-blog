@@ -150,11 +150,13 @@ function generateTags() {
         console.log(articleTagsArray);
         /* START LOOP: for each tag */
         for (let tag of articleTagsArray) {
-            /* generate HTML of the link */
-            let linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';
-            console.log(linkHTML);
+            /* generate HTML of the link [template] */
+            const tagLinkHTML = templates.tagLink({ tag: tag });
+            /* [code befor adding templates]
+            let tagLinkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';*/
+            console.log(tagLinkHTML);
             /* add generated code to html variable */
-            html += linkHTML;
+            html += tagLinkHTML;
 
             /**kiedy generujemy dla tabeli (array)
             /* [NEW] check if this link is NOT already in allTags */
@@ -292,8 +294,10 @@ function generateAuthors() {
     let allAuthorsHTML = '';
     /* [NEW] START LOOP: for each author in allAuthors: */
     for(let author in allAuthors){
+        /* [NEW do Wybrania klasy dla autora] befor adding template
+        const authorLinkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>'; */
         /* [NEW do Wybrania klasy dla autora]*/
-        const authorLinkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>';
+        const authorLinkHTML = templates.authorLink({ author: articleAuthor});
         console.log('authorLinkHTML:', authorLinkHTML);
         
         /* [NEW do Generowanie autorów do chmury ] generate code of a link and add it to allAuthorsHTML */
