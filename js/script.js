@@ -1,4 +1,8 @@
 "use strict";
+/* Dla dodaniu szablonu Handlebars do projectu*/
+const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+  }
 
 /*2. Generowanie listy tytulów*/
 const optArticleSelector = '.post',
