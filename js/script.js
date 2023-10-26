@@ -297,7 +297,7 @@ function generateAuthors() {
         /* [NEW do Wybrania klasy dla autora] befor adding template
         const authorLinkHTML = '<li><a href="#author-' + author + '">' + author + '</a></li>'; */
         /* [NEW do Wybrania klasy dla autora]*/
-        const authorLinkHTML = templates.authorLink({ author: articleAuthor});
+        const authorLinkHTML = templates.authorLink({ author: author});
         console.log('authorLinkHTML:', authorLinkHTML);
         
         /* [NEW do Generowanie autorów do chmury ] generate code of a link and add it to allAuthorsHTML */
