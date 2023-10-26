@@ -2,7 +2,8 @@
 /* Dla dodaniu szablonu Handlebars do projectu*/
 const templates = {
     articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
-    tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML)
+    tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+    authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
 }
 
 /*2. Generowanie listy tytulów*/
@@ -150,10 +151,7 @@ function generateTags() {
         /* START LOOP: for each tag */
         for (let tag of articleTagsArray) {
             /* generate HTML of the link */
-            /* [that code was before adding the tamplate]
-            let linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';*/
-            const linkHTMLData = {id: tagId, title: tagTitle};
-            const linkHTML = templates.tagLink(linkHTMLData);
+            let linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';
             console.log(linkHTML);
             /* add generated code to html variable */
             html += linkHTML;
@@ -189,7 +187,10 @@ function generateTags() {
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
         /* [NEW do Wybranie klasy dla tagu]*/
-        const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '(' + allTags[tag] + ')' + '</a></li>';
+
+        const tagLinkHTML = templates.tagLink({ tag: tag });
+
+        /*const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '">' + tag + '(' + allTags[tag] + ')' + '</a></li>';*/
         console.log('tagLinkHTML:', tagLinkHTML);
 
         /* [NEW do Generowanie tagów do chmury ] generate code of a link and add it to allTagsHTML */
@@ -269,10 +270,12 @@ function generateAuthors() {
         const articleAuthor = article.getAttribute('data-author');
         console.log(articleAuthor);
         /* generate HTML of the link */
-        let authorHTML = '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
-        console.log(authorHTML);
+        /* [befor adding Handlebars template]
+        let authorHTML = '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';*/
+        const authorLinkHTML = templates.authorLink({ author: articleAuthor});
+        console.log(authorLinkHTML);
         /* add generated code to html variable */
-        html += authorHTML;
+        html += authorLinkHTML;
         /* [NEW] check if this link is NOT already in allAuthors */
             if(!allAuthors[articleAuthor]) {
                 /* [NEW] add author to allAuthors object */
