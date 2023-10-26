@@ -2,7 +2,10 @@
 /* Dla dodaniu szablonu Handlebars do projectu*/
 const templates = {
     articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
-  }
+}
+const templates = {
+    tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML)
+}
 
 /*2. Generowanie listy tytulów*/
 const optArticleSelector = '.post',
@@ -149,7 +152,10 @@ function generateTags() {
         /* START LOOP: for each tag */
         for (let tag of articleTagsArray) {
             /* generate HTML of the link */
-            let linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';
+            /* [that code was before adding the tamplate]
+            let linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '&nbsp;' + '&nbsp;' + '</span></a></li>';*/
+            const linkHTMLData = {id: tagId, title: tagTitle};
+            const linkHTML = templates.tagLink(linkHTMLData);
             console.log(linkHTML);
             /* add generated code to html variable */
             html += linkHTML;
