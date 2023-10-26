@@ -37,7 +37,10 @@ function generateTitleLinks(customSelector = '') {
         /* find the title element */
         const articleTitle = article.querySelector(optTitleSelector).innerHTML;
         /* create HTML of the link */
-        const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+        /* [that kode was before added tamplate] 
+        const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>'; */
+        const linkHTMLData = {id: articleId, title: articleTitle};
+        const linkHTML = templates.articleLink(linkHTMLData);
         console.log(linkHTML);
         /* insert link into titleList */
         titleList.insertAdjacentHTML('beforeend', linkHTML);
