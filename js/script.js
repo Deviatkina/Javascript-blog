@@ -1,9 +1,7 @@
 "use strict";
 /* Dla dodaniu szablonu Handlebars do projectu*/
 const templates = {
-    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
-}
-const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
     tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML)
 }
 
