@@ -3,7 +3,8 @@
 const templates = {
     articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
     tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
-    authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
+    authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+    tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloud-link').innerHTML),
 }
 
 /*2. Generowanie listy tytulów*/
@@ -184,7 +185,9 @@ function generateTags() {
     /* [NEW] create variable for all links HTML code */
     const tagsParams = calculateTagsParams(allTags);
     console.log('tagsParams:', tagsParams);
-    let allTagsHTML = '';
+    /* Zniana niżej spowodowana dodaniem szablonu Handlebars
+    z  let allTagsHTML = '', na kod poniżej*/
+    const allTagsData = {tags: []};
    
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
@@ -196,8 +199,13 @@ function generateTags() {
         console.log('tagLinkHTML:', tagLinkHTML);
 
         /* [NEW do Generowanie tagów do chmury ] generate code of a link and add it to allTagsHTML */
-        //??allTagsHTML += '<a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a> ';/
-        allTagsHTML += tagLinkHTML;
+        //?? allTagsHTML += '<a href="#tag-' + tag + '">' + tag + ' (' + allTags[tag] + ')</a> ';/
+        //?? before adding Handlebar - allTagsHTML += tagLinkHTML;*/
+        allTagsData.tags.push({
+            tag: tag,
+            count: allTags[tag],
+            className: calculateTagClass(allTags[tag], tagsParams)
+        });
         
         /*(previous code can be changed by using templates:
         allTagsHTML += `<a href="#${tag}">${tag} (${allTags[tag]})</a> `; )*/
@@ -205,7 +213,8 @@ function generateTags() {
         /* [NEW] END LOOP: for each tag in allTags: */
     }
     /*[NEW] add HTML from allTagsHTML to tagList */
-    tagList.innerHTML = allTagsHTML;
+    /* before adding tamplate Handlebars - tagList.innerHTML = allTagsHTML; */
+    tagList.innerHTML = templates.tagCloudLink(allTagsData);
     console.log(allTags);
 }
 generateTags();
