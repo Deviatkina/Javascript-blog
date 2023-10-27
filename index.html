@@ -255,7 +255,15 @@
   </script>
 
   <script id="template-tagCloud-link" type="text/x-handlebars-template">
-    <a href="{{ tagCloud }}"><span>{{ tagCloud }}</span></a>
+    {{#each tags}}
+    <a href="{{ tag }}" class="{{className}}"><span>{{ tag }}</span></a>
+    {{/each}}
+  </script>
+
+  <script id="template-authorCloud-link" type="text/x-handlebars-template">
+    {{#each author}}
+    <a href="{{ author }}"><span>{{ author }}</span></a>
+    {{/each}}
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js">
