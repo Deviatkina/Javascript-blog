@@ -51,14 +51,9 @@ function generateTitleLinks(customSelector = '') {
         html = html + linkHTML;
     }
     titleList.innerHTML = html;
-    const links = document.querySelectorAll('.titles a');
-
-    for (let link of links) {
-        link.addEventListener('click', titleClickHandler);
-    }
-    links[0].classList.add('active')   
 }
-
+/* Wykonywanie funkcji generateTitleLinks */
+generateTitleLinks();
 
 /* 1. Wyświetłenie artykułu po kliknięciu*/
 const titleClickHandler = function (event) {
@@ -95,8 +90,12 @@ const titleClickHandler = function (event) {
     /* [DONE] add class 'active' to the correct article */
     targetArticle.classList.add('active');
 }
-/* Wykonanie funkcji generateTitleLinks*/
-generateTitleLinks();
+const links = document.querySelectorAll('.titles a');
+
+    for (let link of links) {
+        link.addEventListener('click', titleClickHandler);
+    } 
+
 
 /*10. Znalezienie skrajnych liczb wystąpień tagu*/
 function calculateTagsParams(tags){
