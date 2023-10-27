@@ -94,8 +94,7 @@ const links = document.querySelectorAll('.titles a');
 
     for (let link of links) {
         link.addEventListener('click', titleClickHandler);
-    } 
-
+    }
 
 /*10. Znalezienie skrajnych liczb wystąpień tagu*/
 function calculateTagsParams(tags){
