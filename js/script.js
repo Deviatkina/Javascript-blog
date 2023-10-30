@@ -60,7 +60,8 @@ const titleClickHandler = function (event) {
     event.preventDefault();/* Dla pozostania na bieżącej części strony*/
     const clickedElement = this;
     console.log('Link was clicked!');
-
+    this.classList.remove('unread');
+    
     /* [DONE] remove class 'active' from all article links  */
     const activeLinks = document.querySelectorAll('.titles a.active');
 
@@ -93,6 +94,7 @@ const titleClickHandler = function (event) {
 const links = document.querySelectorAll('.titles a');
 
     for (let link of links) {
+        link.classList.add('unread');
         link.addEventListener('click', titleClickHandler);
     }
 
