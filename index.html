@@ -256,13 +256,13 @@
 
   <script id="template-tagCloud-link" type="text/x-handlebars-template">
     {{#each tags}}
-    <a href="{{ tag }}" class="{{className}}"><span>{{ tag }}</span></a>
+    <a href="#tag-{{ tag }}" class="{{className}}"><span>{{ tag }}</span></a>
     {{/each}}
   </script>
 
   <script id="template-authorCloud-link" type="text/x-handlebars-template">
     {{#each author}}
-    <a href="{{ author }}"><span>{{ author }}</span></a>
+    <a href="#author-{{ author }}"><span>{{ author }}</span></a>
     {{/each}}
   </script>
 
